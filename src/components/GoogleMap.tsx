@@ -145,7 +145,7 @@ export function GoogleMap({ markers, routeStops, travelMode = "WALKING", onMarke
         origin, destination, waypoints,
         travelMode: window.google.maps.TravelMode[travelMode],
       },
-      (res, status) => {
+      (res: google.maps.DirectionsResult | null, status: google.maps.DirectionsStatus) => {
         if (status === "OK" && res) renderer.setDirections(res);
       },
     );

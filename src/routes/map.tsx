@@ -38,7 +38,7 @@ function MapPage() {
   // Sync url ↔ state
   useEffect(() => {
     navigate({
-      search: (p) => ({
+      search: (p: MapSearch) => ({
         ...p,
         ids: selectedIds.length ? selectedIds.join(",") : undefined,
         mode,
