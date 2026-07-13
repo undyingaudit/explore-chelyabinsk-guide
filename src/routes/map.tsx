@@ -1,20 +1,21 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useMemo, useState, useEffect } from "react";
-import { z } from "zod";
-import { zodValidator } from "@tanstack/zod-adapter";
 import { ArrowUp, ArrowDown, Trash2, Footprints, Car } from "lucide-react";
 import { ATTRACTIONS } from "@/data/chelyabinsk";
 import { GoogleMap } from "@/components/GoogleMap";
 import { cn } from "@/lib/utils";
 
-const searchSchema = z.object({
-  ids: z.string().optional(),
-  mode: z.enum(["walk", "drive"]).optional(),
-});
+interface MapSearch {
+  ids?: string;
+  mode?: "walk" | "drive";
+}
 
 export const Route = createFileRoute("/map")({
   component: MapPage,
-  validateSearch: zodValidator(searchSchema),
+  validateSearch: (search: Record<string, unknown>): MapSearch => ({
+    ids: typeof search.ids === "string" ? search.ids : undefined,
+    mode: search.mode === "walk" || search.mode === "drive" ? search.mode : undefined,
+  }),
   head: () => ({
     meta: [
       { title: "Маршрут по Челябинску — построить прогулку на карте" },
