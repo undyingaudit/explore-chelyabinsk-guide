@@ -1,11 +1,12 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { MapPin, CalendarDays, Map, Sparkles, Compass } from "lucide-react";
+import { MapPin, CalendarDays, Map, Sparkles, Compass, Users } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const links = [
   { to: "/", label: "Главная", icon: Compass },
   { to: "/attractions", label: "Места", icon: MapPin },
   { to: "/events", label: "События", icon: CalendarDays },
+  { to: "/people", label: "Люди", icon: Users },
   { to: "/map", label: "Маршрут", icon: Map },
   { to: "/assistant", label: "AI-гид", icon: Sparkles },
 ] as const;
