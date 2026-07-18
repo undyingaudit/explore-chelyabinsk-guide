@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, MapPin, CalendarDays, Sparkles, Route as RouteIcon } from "lucide-react";
+import { ArrowRight, MapPin, CalendarDays, Users, Route as RouteIcon } from "lucide-react";
 import { ATTRACTIONS, EVENTS } from "@/data/chelyabinsk";
 
 export const Route = createFileRoute("/")({
@@ -48,7 +48,7 @@ function Home() {
             { icon: MapPin, title: "Места", text: "Достопримечательности, музеи, парки — с историей и адресом.", to: "/attractions" },
             { icon: CalendarDays, title: "События", text: "Культура, спорт, семейное — платные и бесплатные.", to: "/events" },
             { icon: RouteIcon, title: "Маршрут", text: "Выбирай точки — прокладываем пешую или авто-дорогу.", to: "/map" },
-            { icon: Sparkles, title: "AI-гид", text: "Спроси, что посмотреть за день или вечером с детьми.", to: "/assistant" },
+            { icon: Users, title: "Люди", text: "Известные исторические и современные личности города.", to: "/people" },
           ].map((f) => (
             <Link key={f.title} to={f.to} className="group rounded-xl border bg-card p-5 shadow-card transition hover:-translate-y-0.5 hover:border-primary/40">
               <f.icon className="h-6 w-6 text-primary" />
