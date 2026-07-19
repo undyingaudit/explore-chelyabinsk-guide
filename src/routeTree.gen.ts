@@ -13,6 +13,7 @@ import { Route as PeopleRouteImport } from './routes/people'
 import { Route as MapRouteImport } from './routes/map'
 import { Route as HistoryRouteImport } from './routes/history'
 import { Route as EventsRouteImport } from './routes/events'
+import { Route as CalendarRouteImport } from './routes/calendar'
 import { Route as AttractionsRouteImport } from './routes/attractions'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -36,6 +37,11 @@ const EventsRoute = EventsRouteImport.update({
   path: '/events',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CalendarRoute = CalendarRouteImport.update({
+  id: '/calendar',
+  path: '/calendar',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AttractionsRoute = AttractionsRouteImport.update({
   id: '/attractions',
   path: '/attractions',
@@ -50,6 +56,7 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/attractions': typeof AttractionsRoute
+  '/calendar': typeof CalendarRoute
   '/events': typeof EventsRoute
   '/history': typeof HistoryRoute
   '/map': typeof MapRoute
@@ -58,6 +65,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/attractions': typeof AttractionsRoute
+  '/calendar': typeof CalendarRoute
   '/events': typeof EventsRoute
   '/history': typeof HistoryRoute
   '/map': typeof MapRoute
@@ -67,6 +75,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/attractions': typeof AttractionsRoute
+  '/calendar': typeof CalendarRoute
   '/events': typeof EventsRoute
   '/history': typeof HistoryRoute
   '/map': typeof MapRoute
@@ -74,13 +83,28 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/attractions' | '/events' | '/history' | '/map' | '/people'
+  fullPaths:
+    | '/'
+    | '/attractions'
+    | '/calendar'
+    | '/events'
+    | '/history'
+    | '/map'
+    | '/people'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/attractions' | '/events' | '/history' | '/map' | '/people'
+  to:
+    | '/'
+    | '/attractions'
+    | '/calendar'
+    | '/events'
+    | '/history'
+    | '/map'
+    | '/people'
   id:
     | '__root__'
     | '/'
     | '/attractions'
+    | '/calendar'
     | '/events'
     | '/history'
     | '/map'
@@ -90,6 +114,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AttractionsRoute: typeof AttractionsRoute
+  CalendarRoute: typeof CalendarRoute
   EventsRoute: typeof EventsRoute
   HistoryRoute: typeof HistoryRoute
   MapRoute: typeof MapRoute
@@ -126,6 +151,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EventsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/calendar': {
+      id: '/calendar'
+      path: '/calendar'
+      fullPath: '/calendar'
+      preLoaderRoute: typeof CalendarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/attractions': {
       id: '/attractions'
       path: '/attractions'
@@ -146,6 +178,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AttractionsRoute: AttractionsRoute,
+  CalendarRoute: CalendarRoute,
   EventsRoute: EventsRoute,
   HistoryRoute: HistoryRoute,
   MapRoute: MapRoute,
