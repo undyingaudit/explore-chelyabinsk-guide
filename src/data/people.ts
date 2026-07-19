@@ -342,7 +342,7 @@ export const PEOPLE: Person[] = [
     contribution: "Его имя закреплено за главным концертным залом города.",
     fullStory: "Один из величайших композиторов XX века. Автор балетов, симфоний, опер, музыки для кино.",
     fact: "В зале им. Прокофьева ежегодно проходит фестиваль его музыки.",
-    image: wm("Sergei Prokofiev 02.jpg"), placeIds: ["philharmonic"] },
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Sergei_Prokofiev_circa_1918_over_Chair_Bain.jpg/500px-Sergei_Prokofiev_circa_1918_over_Chair_Bain.jpg", placeIds: ["philharmonic"] },
   { id: "glinka", name: "Михаил Глинка", years: "1804–1857", role: "Композитор", field: "music", era: "historical",
     bio: "Родоначальник русской классической музыки; имя носит Челябинский театр оперы и балета.",
     contribution: "Челябинский оперный носит его имя с момента открытия.",
