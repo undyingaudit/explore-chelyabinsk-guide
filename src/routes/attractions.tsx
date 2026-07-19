@@ -91,7 +91,7 @@ function AttractionsPage() {
             <button key={a.id} onClick={() => setOpenId(a.id)}
               className="group overflow-hidden rounded-xl border bg-card text-left shadow-card transition hover:-translate-y-0.5 hover:border-primary/40">
               <div className="aspect-[16/10] overflow-hidden">
-                <img src={a.image} alt={a.name} loading="lazy" className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+                <img src={a.image} alt={a.name} loading="lazy" onError={onImgError()} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
               </div>
               <div className="p-3">
                 <div className="flex items-center justify-between gap-2">
@@ -137,7 +137,7 @@ function PlaceSheet({ place, onClose }: { place: Attraction; onClose: () => void
     <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/60 p-0 sm:items-center sm:p-4" onClick={onClose}>
       <article className="relative flex max-h-[92vh] w-full max-w-3xl flex-col overflow-hidden rounded-t-2xl bg-card shadow-2xl sm:rounded-2xl" onClick={(e) => e.stopPropagation()}>
         <button onClick={onClose} className="absolute right-3 top-3 z-10 rounded-full bg-background/90 p-1.5 shadow"><X className="h-4 w-4" /></button>
-        <img src={place.image} alt={place.name} className="h-56 w-full object-cover" />
+        <img src={place.image} alt={place.name} onError={onImgError()} className="h-56 w-full object-cover" />
         <div className="overflow-y-auto p-5">
           <div className="flex items-center gap-2 text-xs">
             <span className="rounded-full bg-primary/10 px-2 py-0.5 font-semibold uppercase tracking-wider text-primary">{CATEGORY_LABEL[place.category]}</span>

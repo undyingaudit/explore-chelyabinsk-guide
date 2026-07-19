@@ -64,7 +64,7 @@ function PeoplePage() {
         {filtered.map((p) => (
           <button key={p.id} onClick={() => setSelectedId(p.id)}
             className="group flex gap-3 overflow-hidden rounded-xl border bg-card text-left shadow-card transition hover:-translate-y-0.5 hover:border-primary/40">
-            <img src={p.image} alt={p.name} loading="lazy" className="h-24 w-24 shrink-0 object-cover" />
+            <img src={p.image} alt={p.name} loading="lazy" onError={onImgError("person")} className="h-24 w-24 shrink-0 object-cover" />
             <div className="flex-1 py-2.5 pr-3">
               <div className="flex items-start justify-between gap-1">
                 <h3 className="font-display text-sm font-semibold leading-tight">{p.name}</h3>
@@ -96,7 +96,7 @@ function PersonDialog({ person, onClose }: { person: Person; onClose: () => void
       <article className="relative flex max-h-[90vh] w-full max-w-3xl flex-col overflow-hidden rounded-t-2xl bg-card shadow-2xl sm:rounded-2xl" onClick={(e) => e.stopPropagation()}>
         <button onClick={onClose} className="absolute right-3 top-3 z-10 rounded-full bg-background/90 p-1.5 shadow"><X className="h-4 w-4" /></button>
         <div className="grid gap-0 sm:grid-cols-[240px_1fr]">
-          <img src={person.image} alt={person.name} className="h-64 w-full object-cover sm:h-full" />
+          <img src={person.image} alt={person.name} onError={onImgError("person")} className="h-64 w-full object-cover sm:h-full" />
           <div className="overflow-y-auto p-5">
             <p className="text-xs uppercase tracking-wider text-primary">{FIELD_LABEL[person.field]}</p>
             <h2 className="mt-1 font-display text-2xl font-bold">{person.name}</h2>
