@@ -11,7 +11,7 @@ export function FloatingChat() {
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
   const [messages, setMessages] = useState<Msg[]>([
-    { role: "assistant", content: "Привет! Я Верблюжонок — гид по Челябинску. Спросите, что посмотреть, куда сходить или как построить маршрут." },
+    { role: "assistant", content: "Привет! Я Суровый челябинский верблюжонок — ваш гид по городу. Спросите, что посмотреть, куда сходить или как построить маршрут." },
   ]);
   const scrollRef = useRef<HTMLDivElement>(null);
   const ask = useServerFn(askGuide);
@@ -44,11 +44,11 @@ export function FloatingChat() {
       {!open && (
         <button
           onClick={() => setOpen(true)}
-          aria-label="Открыть чат с гидом"
-          className="fixed bottom-5 right-5 z-50 flex items-center gap-2 rounded-full bg-brand-gradient px-4 py-3 text-white shadow-glow transition hover:scale-105"
+          aria-label="Открыть чат с Суровым челябинским верблюжонком"
+          title="Суровый челябинский верблюжонок"
+          className="fixed bottom-5 right-5 z-50 grid h-14 w-14 place-items-center rounded-full bg-brand-gradient text-white shadow-glow transition hover:scale-105"
         >
-          <CamelLogo className="h-6 w-6" />
-          <span className="hidden text-sm font-medium sm:inline">Верблюжонок</span>
+          <CamelLogo className="h-8 w-8" />
         </button>
       )}
 
@@ -59,7 +59,7 @@ export function FloatingChat() {
           <header className="flex items-center gap-2 bg-brand-gradient px-4 py-3 text-white">
             <CamelLogo className="h-7 w-7" />
             <div className="flex-1">
-              <p className="font-display text-sm font-semibold">Верблюжонок</p>
+              <p className="font-display text-sm font-semibold">Суровый челябинский верблюжонок</p>
               <p className="text-xs text-white/80">AI-гид по Челябинску</p>
             </div>
             <button onClick={() => setOpen(false)} aria-label="Закрыть" className="rounded-md p-1 hover:bg-white/10">
