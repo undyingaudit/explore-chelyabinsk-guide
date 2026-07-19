@@ -112,10 +112,5 @@ export function FloatingChat() {
 }
 
 function CamelLogo({ className }: { className?: string }) {
-  // Стилизованный силуэт верблюда — символ герба Челябинска
-  return (
-    <svg viewBox="0 0 64 64" fill="currentColor" className={className} aria-hidden>
-      <path d="M12 44c0-2 2-3 4-3s3 1 4 3c1-8 5-14 12-15 0-4 3-7 7-7 3 0 5 2 5 5 0 2-1 3-2 3s-1 1 0 2c3 2 5 6 5 10v2h2c2 0 3 1 3 3s-1 3-3 3h-4l-1 4c0 2-1 3-3 3s-3-1-3-3l-1-3H21l-1 3c0 2-1 3-3 3s-3-1-3-3l-1-4h-1c-2 0-3-1-3-3s1-3 3-3z" />
-    </svg>
-  );
+  return <img src={camelIcon} alt="Верблюд" className={cn("object-contain drop-shadow", className)} />;
 }
