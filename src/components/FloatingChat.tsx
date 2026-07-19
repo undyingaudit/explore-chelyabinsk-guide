@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import { MessageCircle, X, Send, Loader2 } from "lucide-react";
+import { X, Send, Loader2 } from "lucide-react";
 import { useServerFn } from "@tanstack/react-start";
 import { askGuide } from "@/lib/assistant.functions";
 import { cn } from "@/lib/utils";
+import camelIcon from "@/assets/camel-icon.png";
 
 interface Msg { role: "user" | "assistant"; content: string; }
 
