@@ -115,11 +115,6 @@ function EventsPage() {
         </div>
       )}
 
-      {data?.error && (
-        <p className="mb-4 rounded-lg border border-destructive/30 bg-destructive/10 p-3 text-sm text-destructive">
-          Не удалось получить свежие данные ({data.error}). Показываем кэш от {new Date(data.cachedAt).toLocaleString("ru-RU")}.
-        </p>
-      )}
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {filtered.map((e) => <EventCard key={e.id} event={e} />)}
