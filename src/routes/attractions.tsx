@@ -2,16 +2,23 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { MapPin, X, ExternalLink, Search } from "lucide-react";
 import { ATTRACTIONS, CATEGORY_LABEL, DISTRICTS, type Category, type Attraction } from "@/data/chelyabinsk";
+import { PLACE_TAGS, PLACE_TAG_LABEL, type PlaceTag } from "@/data/place-tags";
 import { YandexMap } from "@/components/YandexMap";
 import { cn } from "@/lib/utils";
 import { onImgError } from "@/lib/img";
 
+const TAG_VALUES: PlaceTag[] = ["kids", "industrial", "evening", "nature"];
+
 export const Route = createFileRoute("/attractions")({
   component: AttractionsPage,
+  validateSearch: (s: Record<string, unknown>) => {
+    const t = typeof s.tag === "string" && (TAG_VALUES as string[]).includes(s.tag) ? (s.tag as PlaceTag) : undefined;
+    return { tag: t };
+  },
   head: () => ({
     meta: [
       { title: "60 культурных мест Челябинска — театры, музеи, галереи, парки" },
-      { name: "description", content: "Каталог культурных мест Челябинска с историей, адресом, часами работы и картой Яндекс. Фильтры по категории, району, цене." },
+      { name: "description", content: "Каталог культурных мест Челябинска с историей, адресом, часами работы и картой Яндекс. Фильтры по категории, району, цене и темам." },
     ],
   }),
 });
@@ -19,9 +26,11 @@ export const Route = createFileRoute("/attractions")({
 const ALL_CATS = Object.keys(CATEGORY_LABEL) as Category[];
 
 function AttractionsPage() {
+  const { tag: initialTag } = Route.useSearch();
   const [cat, setCat] = useState<Category | "all">("all");
   const [district, setDistrict] = useState<string>("all");
   const [price, setPrice] = useState<"all" | "free" | "paid">("all");
+  const [tag, setTag] = useState<PlaceTag | "all">(initialTag ?? "all");
   const [q, setQ] = useState("");
   const [sort, setSort] = useState<"name" | "category">("name");
   const [openId, setOpenId] = useState<string | null>(null);
@@ -31,12 +40,13 @@ function AttractionsPage() {
       (cat === "all" || a.category === cat) &&
       (district === "all" || a.district === district) &&
       (price === "all" || (price === "free" ? a.free : !a.free)) &&
+      (tag === "all" || PLACE_TAGS[a.id]?.includes(tag)) &&
       (!q.trim() || (a.name + " " + a.description).toLowerCase().includes(q.toLowerCase()))
     );
     if (sort === "name") list.sort((a, b) => a.name.localeCompare(b.name, "ru"));
     if (sort === "category") list.sort((a, b) => a.category.localeCompare(b.category));
     return list;
-  }, [cat, district, price, q, sort]);
+  }, [cat, district, price, tag, q, sort]);
 
   const open = openId ? ATTRACTIONS.find((a) => a.id === openId) : null;
 
