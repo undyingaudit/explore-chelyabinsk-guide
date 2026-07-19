@@ -4,6 +4,7 @@ import { MapPin, X } from "lucide-react";
 import { PEOPLE, placesForPerson, FIELD_LABEL, type PersonEra, type PersonField, type Person } from "@/data/people";
 import { YandexMap } from "@/components/YandexMap";
 import { cn } from "@/lib/utils";
+import { onImgError } from "@/lib/img";
 
 export const Route = createFileRoute("/people")({
   component: PeoplePage,

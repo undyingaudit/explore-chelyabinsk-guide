@@ -4,6 +4,7 @@ import { MapPin, X, ExternalLink, Search } from "lucide-react";
 import { ATTRACTIONS, CATEGORY_LABEL, DISTRICTS, type Category, type Attraction } from "@/data/chelyabinsk";
 import { YandexMap } from "@/components/YandexMap";
 import { cn } from "@/lib/utils";
+import { onImgError } from "@/lib/img";
 
 export const Route = createFileRoute("/attractions")({
   component: AttractionsPage,
