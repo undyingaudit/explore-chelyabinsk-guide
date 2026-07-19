@@ -141,12 +141,12 @@ function Home() {
         <h2 className="mb-6 font-display text-2xl font-bold md:text-3xl">Тематические подборки</h2>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {[
-            { icon: Baby, title: "С детьми", text: "Парки, зоопарк, ТЮЗ, цирк, детские музеи и мастер-классы.", accent: "from-primary/80 to-primary" },
-            { icon: Cog, title: "Индустриальное наследие", text: "Танкоград, ЧТЗ, ЧМК, музей ЮУЖД — история промышленного Урала.", accent: "from-secondary/80 to-secondary" },
-            { icon: Palette, title: "За один вечер", text: "Кировка, набережная, оперный, галерея «Окно», ресторан с видом.", accent: "from-crimson/80 to-crimson" },
-            { icon: Trees, title: "Природа рядом", text: "Парк Гагарина, Каштакский бор, озеро Смолино, Аркаим, Таганай.", accent: "from-sky/80 to-sky" },
+            { icon: Baby, title: "С детьми", text: "Парк Гагарина, зоопарк, ТЮЗ, цирк, театр кукол, детская библиотека.", tag: "kids" as const, accent: "from-primary/80 to-primary" },
+            { icon: Cog, title: "Индустриальное наследие", text: "Танкоград, памятник танкистам, ДК ЧМК, музей ЮУрГУ, «Уральская молния».", tag: "industrial" as const, accent: "from-secondary/80 to-secondary" },
+            { icon: Palette, title: "За один вечер", text: "Кировка, набережная, оперный, филармония, органный зал, галерея OkNo.", tag: "evening" as const, accent: "from-crimson/80 to-crimson" },
+            { icon: Trees, title: "Природа рядом", text: "Смолино, Шершни, парк Гагарина, ботанический сад, Чебаркуль.", tag: "nature" as const, accent: "from-sky/80 to-sky" },
           ].map((c) => (
-            <Link key={c.title} to="/attractions" className={`group flex flex-col justify-between overflow-hidden rounded-2xl bg-gradient-to-br ${c.accent} p-5 text-white shadow-card transition hover:-translate-y-0.5`}>
+            <Link key={c.title} to="/attractions" search={{ tag: c.tag }} className={`group flex flex-col justify-between overflow-hidden rounded-2xl bg-gradient-to-br ${c.accent} p-5 text-white shadow-card transition hover:-translate-y-0.5`}>
               <c.icon className="h-7 w-7 text-accent" />
               <div className="mt-8">
                 <h3 className="font-display text-lg font-semibold">{c.title}</h3>

@@ -69,6 +69,13 @@ function AttractionsPage() {
             <Chip key={c} active={cat === c} onClick={() => setCat(c)}>{CATEGORY_LABEL[c]}</Chip>
           ))}
         </div>
+        <div className="mt-2 flex flex-wrap items-center gap-2">
+          <span className="text-xs font-medium text-muted-foreground">Подборки:</span>
+          <Chip active={tag === "all"} onClick={() => setTag("all")}>Все</Chip>
+          {TAG_VALUES.map((t) => (
+            <Chip key={t} active={tag === t} onClick={() => setTag(t)}>{PLACE_TAG_LABEL[t]}</Chip>
+          ))}
+        </div>
         <div className="mt-3 flex flex-wrap items-center gap-3 text-xs">
           <div className="flex items-center gap-1">
             <span className="text-muted-foreground">Район:</span>
