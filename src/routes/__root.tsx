@@ -12,6 +12,10 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteNav } from "../components/SiteNav";
+import { FloatingChat } from "../components/FloatingChat";
+
+const TITLE = "Челябинск — Культурная столица 2027";
+const DESCRIPTION = "Городской портал: интерактивные карты и маршруты, афиша событий, культурные места, известные люди и история Челябинска — столицы Южного Урала.";
 
 function NotFoundComponent() {
   return (
@@ -68,16 +72,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Челябинск.Гид — маршруты, места и события" },
-      { name: "description", content: "Открой Челябинск: интерактивная карта, готовые маршруты, афиша культурных и спортивных событий и AI-помощник." },
-      { property: "og:title", content: "Челябинск.Гид — маршруты, места и события" },
-      { property: "og:description", content: "Открой Челябинск: интерактивная карта, готовые маршруты, афиша культурных и спортивных событий и AI-помощник." },
+      { title: TITLE },
+      { name: "description", content: DESCRIPTION },
+      { property: "og:title", content: TITLE },
+      { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Челябинск.Гид — маршруты, места и события" },
-      { name: "twitter:description", content: "Открой Челябинск: интерактивная карта, готовые маршруты, афиша культурных и спортивных событий и AI-помощник." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/df9463dc-ac98-4b2b-9c87-9811534c836e/id-preview-24961ab2--f911b957-0992-4b64-991f-8584b7fbd3e9.lovable.app-1783956900346.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/df9463dc-ac98-4b2b-9c87-9811534c836e/id-preview-24961ab2--f911b957-0992-4b64-991f-8584b7fbd3e9.lovable.app-1783956900346.png" },
+      { name: "twitter:title", content: TITLE },
+      { name: "twitter:description", content: DESCRIPTION },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -116,9 +118,35 @@ function RootComponent() {
         <main className="flex-1">
           <Outlet />
         </main>
-        <footer className="border-t bg-muted/40 py-6 text-center text-xs text-muted-foreground">
-          © Челябинск.Гид — путеводитель по городу
+        <footer className="border-t border-primary/10 bg-secondary py-8 text-secondary-foreground">
+          <div className="mx-auto grid max-w-6xl gap-6 px-4 md:grid-cols-3">
+            <div>
+              <p className="font-display text-lg font-semibold text-white">Челябинск</p>
+              <p className="text-xs uppercase tracking-wider text-accent">Культурная столица 2027</p>
+              <p className="mt-3 text-sm text-white/70">Городской портал культурной жизни Южного Урала.</p>
+            </div>
+            <div className="text-sm">
+              <p className="mb-2 font-semibold text-white">Разделы</p>
+              <ul className="space-y-1 text-white/70">
+                <li><Link to="/attractions" className="hover:text-accent">Культурные места</Link></li>
+                <li><Link to="/events" className="hover:text-accent">Афиша событий</Link></li>
+                <li><Link to="/people" className="hover:text-accent">Люди города</Link></li>
+                <li><Link to="/history" className="hover:text-accent">История</Link></li>
+                <li><Link to="/calendar" className="hover:text-accent">Календарь</Link></li>
+              </ul>
+            </div>
+            <div className="text-sm">
+              <p className="mb-2 font-semibold text-white">Официальные ресурсы</p>
+              <ul className="space-y-1 text-white/70">
+                <li><a href="https://culture.gov.ru" target="_blank" rel="noreferrer" className="hover:text-accent">Министерство культуры РФ</a></li>
+                <li><a href="https://mincult74.ru" target="_blank" rel="noreferrer" className="hover:text-accent">Минкультуры Челябинской области</a></li>
+                <li><a href="https://chelyabinsk.ru" target="_blank" rel="noreferrer" className="hover:text-accent">Администрация Челябинска</a></li>
+              </ul>
+            </div>
+          </div>
+          <p className="mx-auto mt-6 max-w-6xl px-4 text-xs text-white/50">© {new Date().getFullYear()} Челябинск — Культурная столица 2027</p>
         </footer>
+        <FloatingChat />
       </div>
     </QueryClientProvider>
   );
