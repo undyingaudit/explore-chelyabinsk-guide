@@ -59,7 +59,7 @@ export function FloatingChat() {
           <header className="flex items-center gap-2 bg-brand-gradient px-4 py-3 text-white">
             <CamelLogo className="h-7 w-7" />
             <div className="flex-1">
-              <p className="font-display text-sm font-semibold">Верблюжонок</p>
+              <p className="font-display text-sm font-semibold">Суровый челябинский верблюжонок</p>
               <p className="text-xs text-white/80">AI-гид по Челябинску</p>
             </div>
             <button onClick={() => setOpen(false)} aria-label="Закрыть" className="rounded-md p-1 hover:bg-white/10">
