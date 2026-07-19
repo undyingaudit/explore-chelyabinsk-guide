@@ -11,7 +11,7 @@ export function FloatingChat() {
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
   const [messages, setMessages] = useState<Msg[]>([
-    { role: "assistant", content: "Привет! Я Верблюжонок — гид по Челябинску. Спросите, что посмотреть, куда сходить или как построить маршрут." },
+    { role: "assistant", content: "Привет! Я Суровый челябинский верблюжонок — ваш гид по городу. Спросите, что посмотреть, куда сходить или как построить маршрут." },
   ]);
   const scrollRef = useRef<HTMLDivElement>(null);
   const ask = useServerFn(askGuide);
