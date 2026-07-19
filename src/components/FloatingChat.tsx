@@ -44,11 +44,11 @@ export function FloatingChat() {
       {!open && (
         <button
           onClick={() => setOpen(true)}
-          aria-label="Открыть чат с гидом"
-          className="fixed bottom-5 right-5 z-50 flex items-center gap-2 rounded-full bg-brand-gradient px-4 py-3 text-white shadow-glow transition hover:scale-105"
+          aria-label="Открыть чат с Суровым челябинским верблюжонком"
+          title="Суровый челябинский верблюжонок"
+          className="fixed bottom-5 right-5 z-50 grid h-14 w-14 place-items-center rounded-full bg-brand-gradient text-white shadow-glow transition hover:scale-105"
         >
-          <CamelLogo className="h-6 w-6" />
-          <span className="hidden text-sm font-medium sm:inline">Верблюжонок</span>
+          <CamelLogo className="h-8 w-8" />
         </button>
       )}
 
