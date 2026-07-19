@@ -28,10 +28,16 @@ export interface Attraction {
   free: boolean;
 }
 
-// Изображения из Wikimedia Commons (Special:FilePath — свободные лицензии)
+// Локальные фотореалистичные иллюстрации мест (генерация ИИ)
+import kirovkaImg from "@/assets/places/kirovka.jpg";
+import revolutionSquareImg from "@/assets/places/revolution-square.jpg";
+import gagarinParkImg from "@/assets/places/gagarin-park.jpg";
+
+// Устаревшие хелперы (пока используются для остальных объектов; будут удалены по мере замены)
 const wm = (file: string, w = 900) =>
   `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(file)}?width=${w}`;
 const unsp = (id: string) => `https://images.unsplash.com/${id}?w=1200&q=80&auto=format&fit=crop`;
+
 
 export const CHELYABINSK_CENTER = { lat: 55.1614, lng: 61.4008 };
 
