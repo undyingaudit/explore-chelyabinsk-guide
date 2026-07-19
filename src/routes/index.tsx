@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, MapPin, CalendarDays, Users, Route as RouteIcon, Sparkles, Award, Building2 } from "lucide-react";
+import { ArrowRight, MapPin, CalendarDays, Users, Route as RouteIcon, Sparkles, Award, Building2, Baby, Cog, Palette, Trees } from "lucide-react";
 import { ATTRACTIONS } from "@/data/chelyabinsk";
+import { onImgError } from "@/lib/img";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -98,7 +99,7 @@ function Home() {
         <div className="grid gap-4 md:grid-cols-4">
           {[
             { icon: MapPin, title: "Места", text: "60+ культурных мест: театры, музеи, галереи, храмы, памятники.", to: "/attractions" as const },
-            { icon: CalendarDays, title: "События", text: "Афиша с Kudago: концерты, театр, выставки. Обновление каждые 15 мин.", to: "/events" as const },
+            { icon: CalendarDays, title: "События", text: "Афиша Челябинска: театр, концерты, выставки, спорт. Обновление каждые 15 мин.", to: "/events" as const },
             { icon: RouteIcon, title: "Маршрут", text: "Свой маршрут по Яндекс.Картам: пешком или на авто.", to: "/map" as const },
             { icon: Users, title: "Люди", text: "50 знаковых челябинцев: от Курчатова до современных художников.", to: "/people" as const },
           ].map((f) => (
@@ -124,13 +125,37 @@ function Home() {
           {featured.map((a) => (
             <article key={a.id} className="overflow-hidden rounded-xl border bg-card shadow-card">
               <div className="aspect-[16/10] overflow-hidden">
-                <img src={a.image} alt={a.name} loading="lazy" className="h-full w-full object-cover transition duration-500 hover:scale-105" />
+                <img src={a.image} alt={a.name} loading="lazy" onError={onImgError()} className="h-full w-full object-cover transition duration-500 hover:scale-105" />
               </div>
               <div className="p-4">
                 <h3 className="font-display text-lg font-semibold">{a.name}</h3>
                 <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">{a.description}</p>
               </div>
             </article>
+          ))}
+        </div>
+      </section>
+
+      {/* Thematic collections */}
+      <section className="mx-auto max-w-6xl px-4 pb-14">
+        <h2 className="mb-6 font-display text-2xl font-bold md:text-3xl">Тематические подборки</h2>
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {[
+            { icon: Baby, title: "С детьми", text: "Парки, зоопарк, ТЮЗ, цирк, детские музеи и мастер-классы.", accent: "from-primary/80 to-primary" },
+            { icon: Cog, title: "Индустриальное наследие", text: "Танкоград, ЧТЗ, ЧМК, музей ЮУЖД — история промышленного Урала.", accent: "from-secondary/80 to-secondary" },
+            { icon: Palette, title: "За один вечер", text: "Кировка, набережная, оперный, галерея «Окно», ресторан с видом.", accent: "from-crimson/80 to-crimson" },
+            { icon: Trees, title: "Природа рядом", text: "Парк Гагарина, Каштакский бор, озеро Смолино, Аркаим, Таганай.", accent: "from-sky/80 to-sky" },
+          ].map((c) => (
+            <Link key={c.title} to="/attractions" className={`group flex flex-col justify-between overflow-hidden rounded-2xl bg-gradient-to-br ${c.accent} p-5 text-white shadow-card transition hover:-translate-y-0.5`}>
+              <c.icon className="h-7 w-7 text-accent" />
+              <div className="mt-8">
+                <h3 className="font-display text-lg font-semibold">{c.title}</h3>
+                <p className="mt-1 text-sm text-white/85">{c.text}</p>
+                <span className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-accent transition-all group-hover:gap-2">
+                  Смотреть <ArrowRight className="h-3.5 w-3.5" />
+                </span>
+              </div>
+            </Link>
           ))}
         </div>
       </section>

@@ -73,7 +73,7 @@ function EventsPage() {
       <header className="mb-6 flex flex-wrap items-end justify-between gap-3">
         <div>
           <h1 className="font-display text-3xl font-bold md:text-5xl">Афиша</h1>
-          <p className="mt-2 text-muted-foreground">Что происходит в Челябинске сейчас и в ближайшие дни. Данные — Kudago.</p>
+          <p className="mt-2 text-muted-foreground">Что происходит в Челябинске сейчас и в ближайшие дни. Обновление каждые 15 минут.</p>
         </div>
         <div className="flex items-center gap-2 text-xs text-muted-foreground">
           {dataUpdatedAt && <span>Обновлено: {new Date(dataUpdatedAt).toLocaleTimeString("ru-RU")}</span>}
