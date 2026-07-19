@@ -2,13 +2,10 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useMemo, useState, useEffect } from "react";
 import { ArrowUp, ArrowDown, Trash2, Footprints, Car } from "lucide-react";
 import { ATTRACTIONS } from "@/data/chelyabinsk";
-import { GoogleMap } from "@/components/GoogleMap";
+import { YandexMap } from "@/components/YandexMap";
 import { cn } from "@/lib/utils";
 
-interface MapSearch {
-  ids?: string;
-  mode?: "walk" | "drive";
-}
+interface MapSearch { ids?: string; mode?: "walk" | "drive"; }
 
 export const Route = createFileRoute("/map")({
   component: MapPage,
@@ -18,8 +15,8 @@ export const Route = createFileRoute("/map")({
   }),
   head: () => ({
     meta: [
-      { title: "Маршрут по Челябинску — построить прогулку на карте" },
-      { name: "description", content: "Выбирай места на карте Челябинска и получай готовый пеший или авто-маршрут с остановками." },
+      { title: "Маршрут по Челябинску — построить прогулку на Яндекс.Картах" },
+      { name: "description", content: "Выбирай места на карте Челябинска и получай готовый пеший или авто-маршрут через Яндекс.Карты." },
     ],
   }),
 });
@@ -35,14 +32,9 @@ function MapPage() {
   const [selectedIds, setSelectedIds] = useState<string[]>(initialIds);
   const [mode, setMode] = useState<"walk" | "drive">(search.mode ?? "walk");
 
-  // Sync url ↔ state
   useEffect(() => {
     navigate({
-      search: (p: MapSearch) => ({
-        ...p,
-        ids: selectedIds.length ? selectedIds.join(",") : undefined,
-        mode,
-      }),
+      search: (p: MapSearch) => ({ ...p, ids: selectedIds.length ? selectedIds.join(",") : undefined, mode }),
       replace: true,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -71,13 +63,15 @@ function MapPage() {
 
   const stops = selectedItems.length >= 2 ? selectedItems.map((a) => ({ lat: a.lat, lng: a.lng })) : undefined;
 
+  const yandexUrl = selectedItems.length >= 2
+    ? `https://yandex.ru/maps/?rtext=${selectedItems.map((a) => `${a.lat},${a.lng}`).join("~")}&rtt=${mode === "walk" ? "pd" : "auto"}`
+    : null;
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-8">
       <header className="mb-6">
         <h1 className="font-display text-3xl font-bold md:text-4xl">Мой маршрут</h1>
-        <p className="mt-2 text-muted-foreground">
-          Выбери 2 и больше мест — построим маршрут через Google Maps.
-        </p>
+        <p className="mt-2 text-muted-foreground">Выберите 2 и больше мест — построим маршрут через Яндекс.Карты.</p>
       </header>
 
       <div className="grid gap-6 lg:grid-cols-[380px_1fr]">
@@ -89,16 +83,10 @@ function MapPage() {
             </div>
 
             <div className="flex gap-1 rounded-full border p-1 text-xs">
-              <button
-                onClick={() => setMode("walk")}
-                className={cn("flex flex-1 items-center justify-center gap-1.5 rounded-full px-3 py-1.5 font-medium", mode === "walk" ? "bg-primary text-primary-foreground" : "text-muted-foreground")}
-              >
+              <button onClick={() => setMode("walk")} className={cn("flex flex-1 items-center justify-center gap-1.5 rounded-full px-3 py-1.5 font-medium", mode === "walk" ? "bg-primary text-primary-foreground" : "text-muted-foreground")}>
                 <Footprints className="h-3.5 w-3.5" /> Пешком
               </button>
-              <button
-                onClick={() => setMode("drive")}
-                className={cn("flex flex-1 items-center justify-center gap-1.5 rounded-full px-3 py-1.5 font-medium", mode === "drive" ? "bg-primary text-primary-foreground" : "text-muted-foreground")}
-              >
+              <button onClick={() => setMode("drive")} className={cn("flex flex-1 items-center justify-center gap-1.5 rounded-full px-3 py-1.5 font-medium", mode === "drive" ? "bg-primary text-primary-foreground" : "text-muted-foreground")}>
                 <Car className="h-3.5 w-3.5" /> На авто
               </button>
             </div>
@@ -111,9 +99,7 @@ function MapPage() {
               <ol className="mt-4 space-y-2">
                 {selectedItems.map((a, i) => (
                   <li key={a.id} className="flex items-center gap-2 rounded-lg border bg-background p-2 text-sm">
-                    <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-primary text-xs font-semibold text-primary-foreground">
-                      {i + 1}
-                    </span>
+                    <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-primary text-xs font-semibold text-primary-foreground">{i + 1}</span>
                     <span className="flex-1 truncate">{a.name}</span>
                     <button onClick={() => move(i, -1)} disabled={i === 0} className="rounded p-1 text-muted-foreground hover:bg-muted disabled:opacity-30"><ArrowUp className="h-3.5 w-3.5" /></button>
                     <button onClick={() => move(i, 1)} disabled={i === selectedItems.length - 1} className="rounded p-1 text-muted-foreground hover:bg-muted disabled:opacity-30"><ArrowDown className="h-3.5 w-3.5" /></button>
@@ -123,14 +109,9 @@ function MapPage() {
               </ol>
             )}
 
-            {selectedItems.length >= 1 && (
-              <a
-                href={`https://www.google.com/maps/dir/?api=1&travelmode=${mode === "walk" ? "walking" : "driving"}&origin=${selectedItems[0].lat},${selectedItems[0].lng}${selectedItems.length > 1 ? `&destination=${selectedItems.at(-1)!.lat},${selectedItems.at(-1)!.lng}` : ""}${selectedItems.length > 2 ? `&waypoints=${selectedItems.slice(1, -1).map(a => `${a.lat},${a.lng}`).join("|")}` : ""}`}
-                target="_blank"
-                rel="noreferrer"
-                className="mt-4 block w-full rounded-lg bg-secondary px-3 py-2 text-center text-sm font-medium text-secondary-foreground hover:opacity-90"
-              >
-                Открыть в Google Картах →
+            {yandexUrl && (
+              <a href={yandexUrl} target="_blank" rel="noreferrer" className="mt-4 block w-full rounded-lg bg-secondary px-3 py-2 text-center text-sm font-medium text-secondary-foreground hover:opacity-90">
+                Открыть в Яндекс.Картах →
               </a>
             )}
           </div>
@@ -141,14 +122,7 @@ function MapPage() {
               {ATTRACTIONS.map((a) => {
                 const on = selectedIds.includes(a.id);
                 return (
-                  <button
-                    key={a.id}
-                    onClick={() => toggle(a.id)}
-                    className={cn(
-                      "flex w-full items-center gap-2 rounded-lg border px-2.5 py-2 text-left text-sm transition",
-                      on ? "border-primary bg-primary/5" : "hover:bg-muted",
-                    )}
-                  >
+                  <button key={a.id} onClick={() => toggle(a.id)} className={cn("flex w-full items-center gap-2 rounded-lg border px-2.5 py-2 text-left text-sm transition", on ? "border-primary bg-primary/5" : "hover:bg-muted")}>
                     <span className={cn("grid h-5 w-5 shrink-0 place-items-center rounded border", on ? "border-primary bg-primary text-primary-foreground" : "border-input")}>
                       {on && "✓"}
                     </span>
@@ -161,10 +135,10 @@ function MapPage() {
         </aside>
 
         <div className="lg:sticky lg:top-24 lg:self-start">
-          <GoogleMap
+          <YandexMap
             markers={markers}
             routeStops={stops}
-            travelMode={mode === "walk" ? "WALKING" : "DRIVING"}
+            travelMode={mode === "walk" ? "pedestrian" : "auto"}
             onMarkerClick={toggle}
             className="h-[70vh] min-h-[500px] w-full overflow-hidden rounded-2xl border"
           />
