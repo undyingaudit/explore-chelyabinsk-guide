@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as PeopleRouteImport } from './routes/people'
 import { Route as MapRouteImport } from './routes/map'
+import { Route as HistoryRouteImport } from './routes/history'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as AttractionsRouteImport } from './routes/attractions'
 import { Route as AssistantRouteImport } from './routes/assistant'
@@ -24,6 +25,11 @@ const PeopleRoute = PeopleRouteImport.update({
 const MapRoute = MapRouteImport.update({
   id: '/map',
   path: '/map',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HistoryRoute = HistoryRouteImport.update({
+  id: '/history',
+  path: '/history',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EventsRoute = EventsRouteImport.update({
@@ -52,6 +58,7 @@ export interface FileRoutesByFullPath {
   '/assistant': typeof AssistantRoute
   '/attractions': typeof AttractionsRoute
   '/events': typeof EventsRoute
+  '/history': typeof HistoryRoute
   '/map': typeof MapRoute
   '/people': typeof PeopleRoute
 }
@@ -60,6 +67,7 @@ export interface FileRoutesByTo {
   '/assistant': typeof AssistantRoute
   '/attractions': typeof AttractionsRoute
   '/events': typeof EventsRoute
+  '/history': typeof HistoryRoute
   '/map': typeof MapRoute
   '/people': typeof PeopleRoute
 }
@@ -69,6 +77,7 @@ export interface FileRoutesById {
   '/assistant': typeof AssistantRoute
   '/attractions': typeof AttractionsRoute
   '/events': typeof EventsRoute
+  '/history': typeof HistoryRoute
   '/map': typeof MapRoute
   '/people': typeof PeopleRoute
 }
@@ -79,16 +88,25 @@ export interface FileRouteTypes {
     | '/assistant'
     | '/attractions'
     | '/events'
+    | '/history'
     | '/map'
     | '/people'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/assistant' | '/attractions' | '/events' | '/map' | '/people'
+  to:
+    | '/'
+    | '/assistant'
+    | '/attractions'
+    | '/events'
+    | '/history'
+    | '/map'
+    | '/people'
   id:
     | '__root__'
     | '/'
     | '/assistant'
     | '/attractions'
     | '/events'
+    | '/history'
     | '/map'
     | '/people'
   fileRoutesById: FileRoutesById
@@ -98,6 +116,7 @@ export interface RootRouteChildren {
   AssistantRoute: typeof AssistantRoute
   AttractionsRoute: typeof AttractionsRoute
   EventsRoute: typeof EventsRoute
+  HistoryRoute: typeof HistoryRoute
   MapRoute: typeof MapRoute
   PeopleRoute: typeof PeopleRoute
 }
@@ -116,6 +135,13 @@ declare module '@tanstack/react-router' {
       path: '/map'
       fullPath: '/map'
       preLoaderRoute: typeof MapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/history': {
+      id: '/history'
+      path: '/history'
+      fullPath: '/history'
+      preLoaderRoute: typeof HistoryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/events': {
@@ -154,6 +180,7 @@ const rootRouteChildren: RootRouteChildren = {
   AssistantRoute: AssistantRoute,
   AttractionsRoute: AttractionsRoute,
   EventsRoute: EventsRoute,
+  HistoryRoute: HistoryRoute,
   MapRoute: MapRoute,
   PeopleRoute: PeopleRoute,
 }
