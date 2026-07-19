@@ -47,9 +47,9 @@ export function FloatingChat() {
           onClick={() => setOpen(true)}
           aria-label="Открыть чат с Суровым челябинским верблюжонком"
           title="Суровый челябинский верблюжонок"
-          className="fixed bottom-5 right-5 z-50 grid h-14 w-14 place-items-center rounded-full bg-brand-gradient text-white shadow-glow transition hover:scale-105"
+          className="fixed bottom-5 right-5 z-50 grid h-16 w-16 place-items-center rounded-full border-2 border-accent bg-white shadow-glow transition hover:scale-105"
         >
-          <CamelLogo className="h-8 w-8" />
+          <CamelLogo className="h-11 w-11" />
         </button>
       )}
 
