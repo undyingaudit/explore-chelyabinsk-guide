@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, MapPin, CalendarDays, Users, Route as RouteIcon, Sparkles, Award, Building2, Baby, Cog, Palette, Trees } from "lucide-react";
 import { ATTRACTIONS } from "@/data/chelyabinsk";
 import { onImgError } from "@/lib/img";
+import chelyabinskEmblem from "@/assets/chelyabinsk-emblem.png";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -24,8 +25,10 @@ function Home() {
           <span className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-accent">
             <Award className="h-3.5 w-3.5" /> Культурная столица России 2027
           </span>
-          <h1 className="mt-6 max-w-4xl font-display text-4xl font-bold leading-[1.05] text-white md:text-6xl">
-            Челябинск — <span className="text-gradient-brand">культура промышленной силы</span>
+          <h1 className="mt-6 flex max-w-4xl flex-wrap items-center gap-x-3 gap-y-2 font-display text-4xl font-bold leading-[1.05] text-white md:text-6xl">
+            <img src={chelyabinskEmblem} alt="Ч" className="inline-block h-[1.15em] w-auto drop-shadow-[0_4px_20px_rgba(0,0,0,0.35)]" />
+            <span>елябинск —</span>
+            <span className="text-gradient-brand">культура промышленной силы</span>
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-white/85">
             Городской портал культурной жизни Южного Урала. Маршруты по городу, афиша событий, знаковые места и люди — всё на одной интерактивной карте.
