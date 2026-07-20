@@ -80,6 +80,15 @@ import koltsevayaImg from "@/assets/places/koltsevaya.jpg";
 import monumentWarriorsImg from "@/assets/places/monument-warriors.jpg";
 import monumentTanksImg from "@/assets/places/monument-tanks.jpg";
 import monumentLoveImg from "@/assets/places/monument-love.jpg";
+import monumentCabbieImg from "@/assets/places/monument-cabbie.jpg";
+import monumentNishchijImg from "@/assets/places/monument-nishchij.jpg";
+import monumentModnicaImg from "@/assets/places/monument-modnica.jpg";
+import monumentClownImg from "@/assets/places/monument-clown.jpg";
+import galleryOknoImg from "@/assets/places/gallery-okno.jpg";
+import galleryOblImg from "@/assets/places/gallery-obl.jpg";
+import arbMuseumImg from "@/assets/places/arb-museum.jpg";
+import tsibulyaImg from "@/assets/places/tsibulya.jpg";
+import revsSquareImg from "@/assets/places/revs-square.jpg";
 
 // Устаревшие хелперы (пока используются для остальных объектов; будут удалены по мере замены)
 const wm = (file: string, w = 900) =>
@@ -160,15 +169,15 @@ export const ATTRACTIONS: Attraction[] = [
   { id: "monument-warriors", name: "Мемориал «Скорбящие матери»", category: "monument", district: "Центральный", lat: 55.1591, lng: 61.4187, address: "Лесное кладбище", description: "Мемориал воинам-интернационалистам.", image: monumentWarriorsImg, free: true },
   { id: "monument-tanks", name: "Памятник «Танкистам-добровольцам»", category: "monument", district: "Центральный", lat: 55.1618, lng: 61.4032, address: "бул. Славы", description: "Дань Танкограду — Челябинску военных лет.", history: "Открыт в 1975 году к 30-летию Победы.", details: "Символ трудового подвига челябинцев, выпускавших Т-34, КВ и ИС на ЧТЗ.", image: monumentTanksImg, free: true },
   { id: "monument-love", name: "Памятник Влюблённым", category: "monument", district: "Центральный", lat: 55.1633, lng: 61.4008, address: "мост Кировки", description: "Скульптурная композиция на мосту Кировки.", image: monumentLoveImg, free: true },
-  { id: "monument-cabbie", name: "Скульптура «Извозчик»", category: "monument", district: "Центральный", lat: 55.1614, lng: 61.4002, address: "Кировка", description: "Бронзовый извозчик — одна из скульптур пешеходной улицы.", image: unsp("photo-1524231757912-21f4fe3a7200"), free: true },
-  { id: "monument-nishchij", name: "Скульптура «Нищий»", category: "monument", district: "Центральный", lat: 55.1611, lng: 61.4009, address: "Кировка", description: "Одна из самых узнаваемых скульптур Кировки.", details: "По поверью, если положить монетку — вернётся сторицей.", image: unsp("photo-1524231757912-21f4fe3a7200"), free: true },
-  { id: "monument-modnica", name: "Скульптура «Модница у зеркала»", category: "monument", district: "Центральный", lat: 55.1613, lng: 61.4010, address: "Кировка", description: "Бронзовая композиция на пешеходной улице.", image: unsp("photo-1524231757912-21f4fe3a7200"), free: true },
-  { id: "monument-clown", name: "Скульптура «Клоун»", category: "monument", district: "Центральный", lat: 55.1568, lng: 61.4020, address: "у цирка", description: "Клоун-приглашение у Челябинского цирка.", image: unsp("photo-1585699324551-f6c309eedeca"), free: true },
-  { id: "gallery-okno", name: "Галерея современного искусства «OkNo»", category: "gallery", district: "Центральный", lat: 55.1631, lng: 61.4021, address: "ул. Кирова, 88", description: "Одна из старейших галерей современного искусства Урала.", details: "Основана в 1990-х. Выставки уральских и российских художников, паблик-ток, лекции.", image: unsp("photo-1577083552431-6e5fd01aa342"), free: false },
-  { id: "gallery-obl", name: "Челябинская областная картинная галерея", category: "gallery", district: "Центральный", lat: 55.1607, lng: 61.4079, address: "ул. Труда, 92А", description: "Собрание отечественной и западноевропейской живописи, графики и скульптуры.", image: unsp("photo-1580136579312-94651dfd596d"), free: false },
-  { id: "arb-museum", name: "Театр современного танца ЧГАДТ", category: "gallery", district: "Центральный", lat: 55.1621, lng: 61.4055, address: "ул. Пушкина, 60", description: "Малая сцена и площадка современного пластического искусства.", image: unsp("photo-1522776851755-3914f4c8e6a7"), free: false },
-  { id: "tsibulya", name: "Сад-остров Троицкий", category: "park", district: "Ленинский", lat: 55.1362, lng: 61.4302, address: "р-н ул. Троицкой", description: "Небольшой городской остров-парк.", image: unsp("photo-1508739773434-c26b3d09e071"), free: true },
-  { id: "revs-square", name: "Театральный сквер", category: "park", district: "Центральный", lat: 55.1620, lng: 61.4032, address: "у Театра оперы и балета", description: "Сквер с фонтанами перед театром.", image: unsp("photo-1441974231531-c6227db76b6e"), free: true },
+  { id: "monument-cabbie", name: "Скульптура «Извозчик»", category: "monument", district: "Центральный", lat: 55.1614, lng: 61.4002, address: "Кировка", description: "Бронзовый извозчик — одна из скульптур пешеходной улицы.", image: monumentCabbieImg, free: true },
+  { id: "monument-nishchij", name: "Скульптура «Нищий»", category: "monument", district: "Центральный", lat: 55.1611, lng: 61.4009, address: "Кировка", description: "Одна из самых узнаваемых скульптур Кировки.", details: "По поверью, если положить монетку — вернётся сторицей.", image: monumentNishchijImg, free: true },
+  { id: "monument-modnica", name: "Скульптура «Модница у зеркала»", category: "monument", district: "Центральный", lat: 55.1613, lng: 61.4010, address: "Кировка", description: "Бронзовая композиция на пешеходной улице.", image: monumentModnicaImg, free: true },
+  { id: "monument-clown", name: "Скульптура «Клоун»", category: "monument", district: "Центральный", lat: 55.1568, lng: 61.4020, address: "у цирка", description: "Клоун-приглашение у Челябинского цирка.", image: monumentClownImg, free: true },
+  { id: "gallery-okno", name: "Галерея современного искусства «OkNo»", category: "gallery", district: "Центральный", lat: 55.1631, lng: 61.4021, address: "ул. Кирова, 88", description: "Одна из старейших галерей современного искусства Урала.", details: "Основана в 1990-х. Выставки уральских и российских художников, паблик-ток, лекции.", image: galleryOknoImg, free: false },
+  { id: "gallery-obl", name: "Челябинская областная картинная галерея", category: "gallery", district: "Центральный", lat: 55.1607, lng: 61.4079, address: "ул. Труда, 92А", description: "Собрание отечественной и западноевропейской живописи, графики и скульптуры.", image: galleryOblImg, free: false },
+  { id: "arb-museum", name: "Театр современного танца ЧГАДТ", category: "gallery", district: "Центральный", lat: 55.1621, lng: 61.4055, address: "ул. Пушкина, 60", description: "Малая сцена и площадка современного пластического искусства.", image: arbMuseumImg, free: false },
+  { id: "tsibulya", name: "Сад-остров Троицкий", category: "park", district: "Ленинский", lat: 55.1362, lng: 61.4302, address: "р-н ул. Троицкой", description: "Небольшой городской остров-парк.", image: tsibulyaImg, free: true },
+  { id: "revs-square", name: "Театральный сквер", category: "park", district: "Центральный", lat: 55.1620, lng: 61.4032, address: "у Театра оперы и балета", description: "Сквер с фонтанами перед театром.", image: revsSquareImg, free: true },
 ];
 
 // Оставляем локальные события как fallback / демо; основной поток — из Kudago (см. src/lib/kudago.functions.ts)
